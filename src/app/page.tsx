@@ -1,8 +1,19 @@
+'use client';
+
+import { usePodcasts } from '@/hooks';
+import { LoadingSpinner, SearchInput } from '@/components/ui';
+
 export default function Home() {
+  const { data: podcasts, isLoading } = usePodcasts();
+
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
+
   return (
     <main>
-      <h1>Podcaster</h1>
-      <p>Welcome to Podcaster</p>
+      <SearchInput resultsCount={podcasts?.length} />
+      <p>Podcasts loaded: {podcasts?.length || 0}</p>
     </main>
   );
 }

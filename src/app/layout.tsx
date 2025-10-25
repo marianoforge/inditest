@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { QueryProvider } from '@/context/QueryProvider';
 import { FilterProvider } from '@/context/FilterContext';
+import { Header } from '@/components/layout';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -17,7 +18,10 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <QueryProvider>
-          <FilterProvider>{children}</FilterProvider>
+          <FilterProvider>
+            <Header />
+            {children}
+          </FilterProvider>
         </QueryProvider>
       </body>
     </html>
