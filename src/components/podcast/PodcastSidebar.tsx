@@ -1,5 +1,5 @@
-import Link from 'next/link';
 import Image from 'next/image';
+import { NavLink } from '@/components/ui';
 import type { Podcast, PodcastDetail } from '@/types/podcast.types';
 import styles from './PodcastSidebar.module.css';
 
@@ -19,7 +19,7 @@ export function PodcastSidebar({ podcast, podcastId }: PodcastSidebarProps) {
 
   return (
     <aside className={styles.sidebar}>
-      <Link href={`/podcast/${podcastId}`} className={styles.link}>
+      <NavLink href={`/podcast/${podcastId}`} className={styles.link}>
         <div className={styles.imageWrapper}>
           <Image
             src={image}
@@ -33,7 +33,7 @@ export function PodcastSidebar({ podcast, podcastId }: PodcastSidebarProps) {
           <h1 className={styles.name}>{name}</h1>
           <p className={styles.author}>by {artist}</p>
         </div>
-      </Link>
+      </NavLink>
       {description && (
         <div className={styles.description}>
           <h2 className={styles.descriptionTitle}>Description:</h2>
