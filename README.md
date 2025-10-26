@@ -131,17 +131,61 @@ Requisito del proyecto. Los componentes están construidos desde cero usando HTM
 
 ### Testing Strategy
 
+La aplicación incluye una suite de tests unitarios con Vitest y React Testing Library.
+
+**Ejecución:**
+
 ```bash
-npm test              # Run tests
-npm run test:coverage # Coverage report
+npm test              # Run all tests
+npm run test:coverage # Generate coverage report
+npm run test:ui       # Interactive UI mode
 ```
 
-Los tests cubren:
+**Suite de Tests (22 tests):**
 
-- Utilidades de formateo (fechas, duración)
-- Lógica de filtrado
-- Transformación de datos
-- Componentes críticos
+```
+tests/
+├── unit/
+│   ├── formatters.test.ts          # 6 tests - Date/duration formatting
+│   ├── filtering.test.ts           # 6 tests - Search logic
+│   └── components/
+│       ├── AudioPlayer.test.tsx    # 2 tests - HTML5 player
+│       ├── PodcastCard.test.tsx    # 4 tests - Card rendering & links
+│       └── SearchInput.test.tsx    # 4 tests - User input handling
+```
+
+**Coverage Actual:**
+
+```
+File               | % Stmts | % Branch | % Funcs | % Lines
+-------------------|---------|----------|---------|----------
+All files          |     100 |      100 |     100 |     100
+ utils/            |     100 |      100 |     100 |     100
+  filtering.ts     |     100 |      100 |     100 |     100
+  formatters.ts    |     100 |      100 |     100 |     100
+ components/       |     100 |      100 |     100 |     100
+  AudioPlayer.tsx  |     100 |      100 |     100 |     100
+  PodcastCard.tsx  |     100 |      100 |     100 |     100
+  SearchInput.tsx  |     100 |      100 |     100 |     100
+```
+
+**Qué se testea:**
+
+- ✅ Formateo de duración (MM:SS) y fechas
+- ✅ Filtrado case-insensitive por título y autor
+- ✅ Manejo de edge cases (undefined, NaN, strings vacíos)
+- ✅ Renderizado de componentes con props correctas
+- ✅ Interacciones de usuario (input, onChange)
+- ✅ Navegación (hrefs correctos en links)
+
+**Qué NO se testea (intencionalmente):**
+
+- ❌ CSS y estilos visuales
+- ❌ Server Components (requieren setup complejo)
+- ❌ Integración con API externa
+- ❌ E2E de navegación completa
+
+Esta estrategia mantiene alta cobertura en lógica crítica sin sobre-testear implementaciones triviales.
 
 ## Instalación y Uso
 
