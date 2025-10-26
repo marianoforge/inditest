@@ -1,23 +1,12 @@
-'use client';
+import { fetchTopPodcasts } from '@/services/api/podcasts.server';
+import { PodcastGridClient } from '@/components/podcast/PodcastGridClient';
 
-import { usePodcasts, useFilteredPodcasts } from '@/hooks';
-import { LoadingSpinner, PageHeader } from '@/components/ui';
-import { PodcastGrid } from '@/components/podcast';
-
-export default function Home() {
-  const { data: podcasts, isLoading } = usePodcasts();
-  const filteredPodcasts = useFilteredPodcasts(podcasts);
-
-  if (isLoading) {
-    return <LoadingSpinner />;
-  }
+export default async function Home() {
+  const podcasts = await fetchTopPodcasts();
 
   return (
-    <>
-      <PageHeader resultsCount={filteredPodcasts.length} />
-      <main>
-        <PodcastGrid podcasts={filteredPodcasts} />
-      </main>
-    </>
+    <main>
+      <PodcastGridClient podcasts={podcasts} />
+    </main>
   );
 }
