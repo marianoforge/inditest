@@ -207,11 +207,55 @@ Se optó por unit tests enfocados en lugar de integration tests por las siguient
 
 Esta decisión prioriza pragmatismo: alta cobertura en lógica de negocio sin overhead de mantener mocks frágiles de infraestructura de Next.js.
 
+**¿Y E2E tests?**
+
+Tampoco se incluyen por razones pragmáticas del scope:
+
+- La aplicación tiene solo 3 flujos simples (lista → detalle → episodio)
+- La lógica de negocio ya está 100% cubierta por unit tests
+- E2E requiere setup de Playwright/Cypress + mocks de API externa
+- El overhead de mantenimiento no justifica para una prueba técnica
+- En producción real, agregaríamos 3-4 tests E2E críticos para flujos end-to-end
+
+El enfoque actual (unit tests + documentación) demuestra capacidad técnica sin over-engineering.
+
+## Git Hooks (Husky)
+
+El proyecto utiliza **Husky** para automatizar validaciones de calidad en el flujo de trabajo:
+
+### Pre-commit Hook
+
+Ejecuta `lint-staged` sobre archivos en staging:
+
+- **Archivos TypeScript/TSX**: ESLint (con --fix) + Prettier
+- **Archivos CSS/JSON/MD**: Prettier
+
+Solo procesa archivos modificados (rápido).
+
+### Pre-push Hook
+
+Ejecuta test suite completa con coverage antes de push:
+
+```bash
+npm run test:coverage
+```
+
+Asegura que no se suba código que rompa tests existentes.
+
+### Beneficios
+
+- ✅ Código siempre formateado y sin errores de lint
+- ✅ Tests pasando antes de cualquier push
+- ✅ Proceso automático y transparente
+- ✅ Mantiene historial de commits limpio
+
 ## Instalación y Uso
 
 ```bash
 # Instalar dependencias
 npm install
+
+# Hooks de Husky se configuran automáticamente en postinstall
 
 # Desarrollo
 npm run dev
