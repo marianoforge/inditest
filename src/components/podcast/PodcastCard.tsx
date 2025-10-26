@@ -24,3 +24,4 @@ export function PodcastCard({ podcast }: PodcastCardProps) {
     </Link>
   );
 }
+

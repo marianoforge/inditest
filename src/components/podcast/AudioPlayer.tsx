@@ -15,3 +15,4 @@ export function AudioPlayer({ src, title }: AudioPlayerProps) {
     </div>
   );
 }
+

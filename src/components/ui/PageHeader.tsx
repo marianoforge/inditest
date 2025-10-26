@@ -14,3 +14,4 @@ export function PageHeader({ resultsCount }: PageHeaderProps) {
     </div>
   );
 }
+
