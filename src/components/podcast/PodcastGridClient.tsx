@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from 'react';
 import type { Podcast } from '@/types/podcast.types';
+import { filterPodcasts } from '@/utils/filtering';
 import { PodcastCard } from './PodcastCard';
 import { SearchInput } from './SearchInput';
 import styles from './PodcastGrid.module.css';
@@ -14,15 +15,7 @@ export function PodcastGridClient({ podcasts }: PodcastGridClientProps) {
   const [filter, setFilter] = useState('');
 
   const filteredPodcasts = useMemo(() => {
-    if (!filter.trim()) return podcasts;
-
-    const searchTerm = filter.toLowerCase().trim();
-
-    return podcasts.filter(
-      (podcast) =>
-        podcast.name.toLowerCase().includes(searchTerm) ||
-        podcast.artist.toLowerCase().includes(searchTerm)
-    );
+    return filterPodcasts(podcasts, filter);
   }, [podcasts, filter]);
 
   return (
