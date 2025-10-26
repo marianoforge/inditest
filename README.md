@@ -187,6 +187,26 @@ All files          |     100 |      100 |     100 |     100
 
 Esta estrategia mantiene alta cobertura en lógica crítica sin sobre-testear implementaciones triviales.
 
+**¿Por qué no integration tests?**
+
+Se optó por unit tests enfocados en lugar de integration tests por las siguientes razones técnicas:
+
+1. **Server Components**: Next.js 14 App Router con SSR hace que el testing de integración requiera mock complejo del server runtime. El esfuerzo no justifica el valor agregado.
+
+2. **Data Fetching**: Las llamadas a APIs se hacen server-side con ISR. Testear esto requiere interceptar fetch del servidor o usar herramientas como MSW con configuración extensa.
+
+3. **Coverage vs Esfuerzo**: Los unit tests ya cubren:
+   - Lógica de filtrado completa
+   - Formateo de datos
+   - Comportamiento de componentes
+   - User interactions
+
+   Los integration tests solo verificarían que estos se ensamblan correctamente, con ROI bajo.
+
+4. **E2E es mejor alternativa**: Para flujos completos, E2E con Playwright/Cypress sería más valioso que mocks complejos de server components.
+
+Esta decisión prioriza pragmatismo: alta cobertura en lógica de negocio sin overhead de mantener mocks frágiles de infraestructura de Next.js.
+
 ## Instalación y Uso
 
 ```bash
