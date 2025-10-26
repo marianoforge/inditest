@@ -1,0 +1,58 @@
+.sidebar {
+  background-color: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: 0 1px 3px var(--color-shadow);
+  padding: var(--spacing-lg);
+}
+
+.link {
+  display: block;
+  text-decoration: none;
+  color: var(--color-text);
+}
+
+.imageWrapper {
+  margin-bottom: var(--spacing-lg);
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 2px 8px var(--color-shadow);
+}
+
+.content {
+  padding-bottom: var(--spacing-lg);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.name {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  margin-bottom: var(--spacing-sm);
+  line-height: 1.3;
+}
+
+.author {
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
+  font-style: italic;
+}
+
+.description {
+  margin-top: var(--spacing-lg);
+}
+
+.descriptionTitle {
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  margin-bottom: var(--spacing-sm);
+}
+
+.descriptionText {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
