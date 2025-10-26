@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import { NavLink } from '@/components/ui';
 import type { Episode } from '@/types/podcast.types';
 import { formatDuration, formatDate } from '@/utils/formatters';
 import styles from './EpisodesTable.module.css';
@@ -25,12 +25,12 @@ export function EpisodesTable({ episodes, podcastId }: EpisodesTableProps) {
             {episodes.map((episode) => (
               <tr key={episode.trackId} className={styles.row}>
                 <td className={styles.cell}>
-                  <Link
+                  <NavLink
                     href={`/podcast/${podcastId}/episode/${episode.trackId}`}
                     className={styles.link}
                   >
                     {episode.trackName}
-                  </Link>
+                  </NavLink>
                 </td>
                 <td className={styles.cell}>
                   {formatDate(episode.releaseDate)}

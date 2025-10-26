@@ -1,5 +1,5 @@
-import Link from 'next/link';
 import Image from 'next/image';
+import { NavLink } from '@/components/ui';
 import type { Podcast } from '@/types/podcast.types';
 import styles from './PodcastCard.module.css';
 
@@ -9,7 +9,7 @@ interface PodcastCardProps {
 
 export function PodcastCard({ podcast }: PodcastCardProps) {
   return (
-    <Link href={`/podcast/${podcast.id}`} className={styles.card}>
+    <NavLink href={`/podcast/${podcast.id}`} className={styles.card}>
       <div className={styles.imageWrapper}>
         <Image
           src={podcast.image}
@@ -21,6 +21,6 @@ export function PodcastCard({ podcast }: PodcastCardProps) {
       </div>
       <h2 className={styles.name}>{podcast.name.toUpperCase()}</h2>
       <p className={styles.author}>Author: {podcast.artist}</p>
-    </Link>
+    </NavLink>
   );
 }
