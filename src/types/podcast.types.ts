@@ -64,7 +64,7 @@ export interface Episode {
   trackId: number;
   trackName: string;
   releaseDate: string;
-  trackTimeMillis: number;
+  trackTimeMillis?: number;
   episodeUrl?: string;
   description?: string;
   shortDescription?: string;

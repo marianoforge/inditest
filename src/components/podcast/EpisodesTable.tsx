@@ -7,7 +7,10 @@ interface EpisodesTableProps {
   podcastId: string;
 }
 
-function formatDuration(milliseconds: number): string {
+function formatDuration(milliseconds: number | undefined): string {
+  if (!milliseconds || isNaN(milliseconds)) {
+    return '--:--';
+  }
   const totalSeconds = Math.floor(milliseconds / 1000);
   const minutes = Math.floor(totalSeconds / 60);
   const seconds = totalSeconds % 60;
