@@ -1,38 +1,22 @@
-'use client';
-
-import { use } from 'react';
-import { usePodcastDetail, usePodcasts } from '@/hooks';
-import { LoadingSpinner } from '@/components/ui';
+import { fetchPodcastDetail } from '@/services/api/podcasts.server';
 import { PodcastSidebar, AudioPlayer } from '@/components/podcast';
 import styles from './page.module.css';
 
-export default function EpisodeDetailPage({
-  params,
-}: {
+interface EpisodeDetailPageProps {
   params: Promise<{ podcastId: string; episodeId: string }>;
-}) {
-  const { podcastId, episodeId } = use(params);
-  const { data: podcastsData } = usePodcasts();
-  const { data: detailData, isLoading } = usePodcastDetail(podcastId);
+}
 
-  if (isLoading) {
-    return <LoadingSpinner />;
-  }
+export default async function EpisodeDetailPage({
+  params,
+}: EpisodeDetailPageProps) {
+  const { podcastId, episodeId } = await params;
+  const { podcast, episodes } = await fetchPodcastDetail(podcastId);
 
-  if (!detailData) {
-    return <div>Episode not found</div>;
-  }
-
-  const episode = detailData.episodes.find(
-    (ep) => ep.trackId.toString() === episodeId
-  );
+  const episode = episodes.find((ep) => ep.trackId.toString() === episodeId);
 
   if (!episode) {
     return <div>Episode not found</div>;
   }
-
-  const podcast =
-    podcastsData?.find((p) => p.id === podcastId) || detailData.podcast;
 
   const description =
     episode.description ||

@@ -1,6 +1,4 @@
 import type { Metadata } from 'next';
-import { QueryProvider } from '@/context/QueryProvider';
-import { FilterProvider } from '@/context/FilterContext';
 import { Header } from '@/components/layout';
 import './globals.css';
 
@@ -17,12 +15,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body suppressHydrationWarning>
-        <QueryProvider>
-          <FilterProvider>
-            <Header />
-            {children}
-          </FilterProvider>
-        </QueryProvider>
+        <Header />
+        {children}
       </body>
     </html>
   );
