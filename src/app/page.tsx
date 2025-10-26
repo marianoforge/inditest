@@ -1,19 +1,23 @@
 'use client';
 
-import { usePodcasts } from '@/hooks';
-import { LoadingSpinner, SearchInput } from '@/components/ui';
+import { usePodcasts, useFilteredPodcasts } from '@/hooks';
+import { LoadingSpinner, PageHeader } from '@/components/ui';
+import { PodcastGrid } from '@/components/podcast';
 
 export default function Home() {
   const { data: podcasts, isLoading } = usePodcasts();
+  const filteredPodcasts = useFilteredPodcasts(podcasts);
 
   if (isLoading) {
     return <LoadingSpinner />;
   }
 
   return (
-    <main>
-      <SearchInput resultsCount={podcasts?.length} />
-      <p>Podcasts loaded: {podcasts?.length || 0}</p>
-    </main>
+    <>
+      <PageHeader resultsCount={filteredPodcasts.length} />
+      <main>
+        <PodcastGrid podcasts={filteredPodcasts} />
+      </main>
+    </>
   );
 }

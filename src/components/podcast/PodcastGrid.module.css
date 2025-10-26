@@ -1,0 +1,16 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 80px var(--spacing-xl);
+  padding: 80px var(--spacing-xl) var(--spacing-2xl);
+  max-width: var(--max-width-content);
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 70px var(--spacing-md);
+    padding: 70px var(--spacing-md) var(--spacing-xl);
+  }
+}

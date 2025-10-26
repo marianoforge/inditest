@@ -1,0 +1,29 @@
+.container {
+  max-width: var(--max-width-content);
+  margin: 0 auto;
+  padding: var(--spacing-xl);
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: var(--spacing-xl);
+  align-items: start;
+}
+
+.sidebar {
+  position: sticky;
+  top: calc(60px + var(--spacing-xl));
+}
+
+.content {
+  min-width: 0;
+}
+
+@media (max-width: 768px) {
+  .container {
+    grid-template-columns: 1fr;
+    padding: var(--spacing-md);
+  }
+
+  .sidebar {
+    position: static;
+  }
+}
