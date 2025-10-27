@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { Suspense } from 'react';
 import { HeaderClient } from '@/components/layout';
 import './globals.css';
 
@@ -15,7 +16,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body suppressHydrationWarning>
-        <HeaderClient />
+        <Suspense fallback={<div style={{ height: '64px' }} />}>
+          <HeaderClient />
+        </Suspense>
         {children}
       </body>
     </html>
