@@ -141,7 +141,7 @@ npm run test:coverage # Generate coverage report
 npm run test:ui       # Interactive UI mode
 ```
 
-**Suite de Tests (22 tests):**
+**Suite de Tests (31 tests):**
 
 ```
 tests/
@@ -151,7 +151,11 @@ tests/
 │   └── components/
 │       ├── AudioPlayer.test.tsx    # 2 tests - HTML5 player
 │       ├── PodcastCard.test.tsx    # 4 tests - Card rendering & links
-│       └── SearchInput.test.tsx    # 4 tests - User input handling
+│       ├── SearchInput.test.tsx    # 4 tests - User input handling
+│       ├── PageHeader.test.tsx     # 2 tests - Page header display
+│       ├── LoadingSpinner.test.tsx # 2 tests - Loading state
+│       ├── HeaderClient.test.tsx   # 2 tests - Navigation header
+│       └── NavLink.test.tsx        # 3 tests - Active link handling
 ```
 
 **Coverage Actual:**
@@ -159,14 +163,24 @@ tests/
 ```
 File               | % Stmts | % Branch | % Funcs | % Lines
 -------------------|---------|----------|---------|----------
-All files          |     100 |      100 |     100 |     100
- utils/            |     100 |      100 |     100 |     100
-  filtering.ts     |     100 |      100 |     100 |     100
-  formatters.ts    |     100 |      100 |     100 |     100
- components/       |     100 |      100 |     100 |     100
+All files          |   92.98 |       85 |   88.46 |   96.22
+ components/layout |    87.5 |       50 |      75 |     100
+  Header.tsx       |     100 |       50 |     100 |     100
+  HeaderClient.tsx |   86.66 |      100 |   71.42 |     100
+ components/podcast|     100 |      100 |     100 |     100
   AudioPlayer.tsx  |     100 |      100 |     100 |     100
   PodcastCard.tsx  |     100 |      100 |     100 |     100
   SearchInput.tsx  |     100 |      100 |     100 |     100
+ components/ui     |   93.33 |    83.33 |   85.71 |   93.33
+  LoadingSpinner   |     100 |      100 |     100 |     100
+  NavLink.tsx      |     100 |       75 |     100 |     100
+  PageHeader.tsx   |     100 |      100 |     100 |     100
+  SearchInput.tsx  |   66.66 |      100 |      50 |   66.66
+ context           |   85.71 |       50 |     100 |   85.71
+  FilterContext    |   85.71 |       50 |     100 |   85.71
+ utils             |     100 |      100 |     100 |     100
+  filtering.ts     |     100 |      100 |     100 |     100
+  formatters.ts    |     100 |      100 |     100 |     100
 ```
 
 **Qué se testea:**
@@ -177,6 +191,9 @@ All files          |     100 |      100 |     100 |     100
 - ✅ Renderizado de componentes con props correctas
 - ✅ Interacciones de usuario (input, onChange)
 - ✅ Navegación (hrefs correctos en links)
+- ✅ Estado de navegación activa (active links)
+- ✅ Componentes de UI (loading spinner, headers)
+- ✅ Manejo de rutas y pathname matching
 
 **Qué NO se testea (intencionalmente):**
 
